@@ -90,6 +90,20 @@ const generateImportReport = (context, node, specifier, componentName) => {
   });
 };
 
+const generateRenamedPropMessage = (prop, newProp) => {
+  return `\`${prop}\` prop was renamed to \`${newProp}\``;
+};
+
+const generateRenamedPropReport = (context, node, newProp) => {
+  context.report({
+    node,
+    message: generateRenamedPropMessage(node.name.name, newProp),
+    fix(fixer) {
+      return fixer.replaceText(node.name, newProp);
+    },
+  });
+};
+
 module.exports = {
   generateRecommendedRules,
   getCodeExamples,
@@ -97,4 +111,6 @@ module.exports = {
   isLegacyImport,
   generateComponentImportMessage,
   generateImportReport,
+  generateRenamedPropMessage,
+  generateRenamedPropReport,
 };

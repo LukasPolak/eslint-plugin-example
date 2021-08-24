@@ -25,6 +25,9 @@ ruleTester.run("button", rule, {
         {
           message: utils.generateComponentImportMessage(rule.componentName),
         },
+        {
+          message: utils.generateRenamedPropMessage("isDisabled", "disabled"),
+        },
       ],
       output: `\n${outputCode}`,
     },
