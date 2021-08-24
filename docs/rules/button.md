@@ -15,7 +15,7 @@ Examples of **incorrect** code for this rule:
 import { Button } from "@strv/design-system-legacy";
 
 const Home = () => {
-  return <Button isDisabled deprecatedProp type="primary" />;
+  return <Button isDisabled deprecatedProp type="primary" type="formSubmit" />;
 };
 ```
 

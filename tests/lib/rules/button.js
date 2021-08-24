@@ -40,6 +40,12 @@ ruleTester.run("button", rule, {
             rule.types
           ),
         },
+        {
+          message: utils.generateRenamedPropValueMessage(
+            "formSubmit",
+            "submit"
+          ),
+        },
       ],
       output: `\n${outputCode}`,
     },

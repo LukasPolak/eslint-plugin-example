@@ -130,6 +130,20 @@ const generateIncorrectPropValueReport = (context, node, array) => {
   }
 };
 
+const generateRenamedPropValueMessage = (prop, newProp) => {
+  return `\`${prop}\` prop value was renamed to \`${newProp}\``;
+};
+
+const generateRenamedPropValueReport = (context, node, newValue) => {
+  context.report({
+    node,
+    message: generateRenamedPropValueMessage(node.value.value, newValue),
+    fix(fixer) {
+      return fixer.replaceText(node.value, `"${newValue}"`);
+    },
+  });
+};
+
 module.exports = {
   generateRecommendedRules,
   getCodeExamples,
@@ -143,4 +157,6 @@ module.exports = {
   generateRemovedPropReport,
   generateIncorrectPropValueMessage,
   generateIncorrectPropValueReport,
+  generateRenamedPropValueMessage,
+  generateRenamedPropValueReport,
 };
