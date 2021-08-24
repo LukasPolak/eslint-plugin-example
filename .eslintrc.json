@@ -1,0 +1,67 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:eslint-plugin/recommended"
+  ],
+  "overrides": [
+    {
+      "extends": ["eslint:recommended", "plugin:react/recommended"],
+      "files": "*.jsx",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "sourceType": "module"
+      },
+      "plugins": ["react"],
+      "rules": {
+        "no-unused-vars": "off",
+        "node/no-missing-import": "off",
+        "node/no-unsupported-features/es-syntax": "off",
+        "react/jsx-no-duplicate-props": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ],
+  "parserOptions": {
+    // Only ESLint 6.2.0 and later support ES2020.
+    "ecmaVersion": 2020
+  },
+  "plugins": ["eslint-plugin"],
+  "rules": {
+    "node/no-unpublished-require": "off",
+    "padding-line-between-statements": [
+      2,
+      {
+        "blankLine": "always",
+        "next": "*",
+        "prev": [
+          "case",
+          "export",
+          "multiline-block-like",
+          "multiline-const",
+          "multiline-expression",
+          "return"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "next": [
+          "case",
+          "export",
+          "multiline-block-like",
+          "multiline-const",
+          "multiline-expression",
+          "return"
+        ],
+        "prev": "*"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
