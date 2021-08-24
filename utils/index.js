@@ -34,8 +34,26 @@ const ruleTesterConfig = {
   },
 };
 
+const isLegacyImport = (node) => {
+  return ["@strv/design-system-legacy"].includes(node.source.value);
+};
+
+const generateComponentImportMessage = (componentName) => {
+  return `Do not import \`${componentName}\` from \`@strv/design-system-legacy\`. Use \`@strv/design-system\` instead.`;
+};
+
+const generateImportReport = (context, node, specifier, componentName) => {
+  context.report({
+    node: specifier.imported,
+    message: generateComponentImportMessage(componentName),
+  });
+};
+
 module.exports = {
   generateRecommendedRules,
   getCodeExamples,
   ruleTesterConfig,
+  isLegacyImport,
+  generateComponentImportMessage,
+  generateImportReport,
 };

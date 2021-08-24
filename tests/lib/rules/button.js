@@ -23,7 +23,7 @@ ruleTester.run("button", rule, {
       code: incorrectCode,
       errors: [
         {
-          message: "",
+          message: utils.generateComponentImportMessage(rule.componentName),
         },
       ],
       output: `${outputCode}`,
