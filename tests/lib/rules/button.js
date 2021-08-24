@@ -31,6 +31,15 @@ ruleTester.run("button", rule, {
         {
           message: utils.generateRemovedPropMessage("deprecatedProp"),
         },
+        {
+          message: utils.generateIncorrectPropValueMessage(
+            {
+              name: { name: "type" },
+              value: { value: "primary" },
+            },
+            rule.types
+          ),
+        },
       ],
       output: `\n${outputCode}`,
     },

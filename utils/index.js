@@ -115,6 +115,21 @@ const generateRemovedPropReport = (context, node) => {
   });
 };
 
+const generateIncorrectPropValueMessage = (node, array) => {
+  return `\`${node.name.name}\` prop does not have \`${
+    node.value.value
+  }\` option. Valid options are: [${array.join(", ")}]`;
+};
+
+const generateIncorrectPropValueReport = (context, node, array) => {
+  if (!array.includes(node.value.value)) {
+    context.report({
+      node,
+      message: generateIncorrectPropValueMessage(node, array),
+    });
+  }
+};
+
 module.exports = {
   generateRecommendedRules,
   getCodeExamples,
@@ -126,4 +141,6 @@ module.exports = {
   generateRenamedPropReport,
   generateRemovedPropMessage,
   generateRemovedPropReport,
+  generateIncorrectPropValueMessage,
+  generateIncorrectPropValueReport,
 };
