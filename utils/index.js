@@ -104,6 +104,17 @@ const generateRenamedPropReport = (context, node, newProp) => {
   });
 };
 
+const generateRemovedPropMessage = (prop) => {
+  return `\`${prop}\` prop was removed.`;
+};
+
+const generateRemovedPropReport = (context, node) => {
+  context.report({
+    node,
+    message: generateRemovedPropMessage(node.name.name),
+  });
+};
+
 module.exports = {
   generateRecommendedRules,
   getCodeExamples,
@@ -113,4 +124,6 @@ module.exports = {
   generateImportReport,
   generateRenamedPropMessage,
   generateRenamedPropReport,
+  generateRemovedPropMessage,
+  generateRemovedPropReport,
 };

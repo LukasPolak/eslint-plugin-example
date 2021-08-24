@@ -28,6 +28,9 @@ ruleTester.run("button", rule, {
         {
           message: utils.generateRenamedPropMessage("isDisabled", "disabled"),
         },
+        {
+          message: utils.generateRemovedPropMessage("deprecatedProp"),
+        },
       ],
       output: `\n${outputCode}`,
     },
