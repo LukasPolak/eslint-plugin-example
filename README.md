@@ -11,7 +11,7 @@
 
 |  ✔  | 🔧  | Rule                                               | Description                                                          |
 | :-: | :-: | :------------------------------------------------- | :------------------------------------------------------------------- |
-|  ✔  |     | [@strv/design-system/button](docs/rules/button.md) | Disallow use of `Button` component from `@strv/design-system-legacy` |
+|  ✔  | 🔧  | [@strv/design-system/button](docs/rules/button.md) | Disallow use of `Button` component from `@strv/design-system-legacy` |
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 

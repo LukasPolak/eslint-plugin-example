@@ -42,10 +42,51 @@ const generateComponentImportMessage = (componentName) => {
   return `Do not import \`${componentName}\` from \`@strv/design-system-legacy\`. Use \`@strv/design-system\` instead.`;
 };
 
+const generateImports = (node, componentName, suffix = "") => {
+  const generatedImport = node.specifiers.map((specifier) => {
+    const importedName = specifier.imported.name;
+    const localName = specifier.local.name;
+
+    if (importedName === componentName) {
+      if (importedName !== localName) {
+        return `import { ${importedName}${suffix} as ${localName} } from "@strv/design-system";`;
+      } else {
+        return `import { ${importedName}${suffix} } from "@strv/design-system";`;
+      }
+    }
+  });
+
+  const legacyImportComponents = node.specifiers
+    .filter((specifier) => {
+      return specifier.imported.name !== componentName;
+    })
+    .map((specifier) => {
+      const importedName = specifier.imported.name;
+      const localName = specifier.local.name;
+
+      if (importedName !== localName) {
+        return `${importedName} as ${localName}`;
+      } else {
+        return `${importedName}`;
+      }
+    });
+
+  const legacyImport = legacyImportComponents.length
+    ? `import { ${legacyImportComponents.join(
+        ",\n"
+      )} } from "@strv/design-system-legacy";`
+    : "";
+
+  return [legacyImport, ...generatedImport].join("\n");
+};
+
 const generateImportReport = (context, node, specifier, componentName) => {
   context.report({
     node: specifier.imported,
     message: generateComponentImportMessage(componentName),
+    fix(fixer) {
+      return fixer.replaceText(node, generateImports(node, componentName));
+    },
   });
 };
 

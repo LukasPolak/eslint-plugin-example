@@ -1,4 +1,4 @@
-import { Button } from "@strv/design-system-legacy";
+import { Button } from "@strv/design-system";
 
 const Home = () => {
   return <Button />;

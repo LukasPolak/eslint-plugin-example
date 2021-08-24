@@ -26,7 +26,7 @@ ruleTester.run("button", rule, {
           message: utils.generateComponentImportMessage(rule.componentName),
         },
       ],
-      output: `${outputCode}`,
+      output: `\n${outputCode}`,
     },
   ],
 });
