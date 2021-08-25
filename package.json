@@ -1,0 +1,51 @@
+{
+  "name": "@strv/eslint-plugin-design-system",
+  "version": "1.1.1",
+  "description": "ESLint rules for design-system",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Lukas Polak",
+  "main": "lib/index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "generate:documentation:check": "yarn run generate:documentation && git diff --exit-code **/*.md",
+    "generate:documentation": "md-magic --path '**/*.md' --ignore 'node_modules' && yarn run prettier --write **/*.md",
+    "generate:rule": "hygen rule new",
+    "lint": "yarn run eslint lib/ tests/ utils/",
+    "prepare": "husky install",
+    "test:watch": "yarn run test --watch",
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "requireindex": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-plugin-eslint-plugin": "^3.5.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": ">=6",
+    "hygen": "^6.1.0",
+    "lint-staged": ">=10",
+    "markdown-magic": "^2.5.2",
+    "mocha": "^9.0.3",
+    "prettier": "2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "engines": {
+    "node": "14.17.1"
+  },
+  "license": "ISC",
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write",
+      "yarn run test"
+    ],
+    "*.{js,css,md}": "prettier --write"
+  }
+}
